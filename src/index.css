@@ -1,0 +1,220 @@
+@import '@fontsource-variable/fraunces/opsz.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens: light = "lab notebook paper", dark = "instrument panel". */
+:root {
+  --bg: 246 245 240;
+  --panel: 255 255 252;
+  --panel2: 238 237 230;
+  --line: 214 211 200;
+  --ink: 22 27 38;
+  --muted: 92 98 112;
+  --accent: 8 145 178;
+  --m5: 37 99 235;
+  --m6: 124 58 237;
+  --m7: 180 130 0;
+  --m8: 5 150 105;
+  --good: 22 163 74;
+  --bad: 220 38 38;
+  --warn: 202 138 4;
+  --grid: 0 0 0;
+  color-scheme: light;
+}
+.dark {
+  --bg: 9 13 24;
+  --panel: 15 21 36;
+  --panel2: 22 30 50;
+  --line: 40 52 78;
+  --ink: 228 233 243;
+  --muted: 148 160 184;
+  --accent: 34 211 238;
+  --m5: 77 141 255;
+  --m6: 167 139 250;
+  --m7: 251 191 36;
+  --m8: 52 211 153;
+  --good: 74 222 128;
+  --bad: 248 113 113;
+  --warn: 250 204 21;
+  --grid: 255 255 255;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+body {
+  @apply bg-bg font-sans text-ink antialiased;
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+/* faint graph-paper texture behind everything */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgb(var(--grid) / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--grid) / 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  z-index: 0;
+}
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-display tracking-tight;
+  font-variation-settings: 'opsz' 72;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-panel shadow-card;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-sm font-medium text-ink transition hover:border-accent/60 hover:bg-panel2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50 dark:text-slate-950;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-line bg-panel2 px-2 py-0.5 text-xs font-medium text-muted;
+  }
+  .label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.12em] text-muted;
+  }
+  .input {
+    @apply w-full rounded-lg border border-line bg-panel px-2.5 py-1.5 font-mono text-sm text-ink outline-none focus:border-accent;
+  }
+  .prose-sm p {
+    @apply my-1.5;
+  }
+  .num {
+    @apply font-mono tabular-nums;
+  }
+}
+
+/* range slider */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+  background: transparent;
+  width: 100%;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 4px;
+  background: rgb(var(--line));
+}
+input[type='range']::-moz-range-track {
+  height: 4px;
+  border-radius: 4px;
+  background: rgb(var(--line));
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: rgb(var(--slider, var(--accent)));
+  border: 2px solid rgb(var(--panel));
+  box-shadow: 0 0 0 1px rgb(var(--slider, var(--accent)));
+}
+input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgb(var(--slider, var(--accent)));
+  border: 2px solid rgb(var(--panel));
+}
+
+.katex {
+  font-size: 1.08em;
+}
+.katex-display {
+  margin: 0.4em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+/* SVG diagrams use theme tokens */
+.svg-ink {
+  fill: rgb(var(--ink));
+}
+.svg-muted {
+  fill: rgb(var(--muted));
+}
+.svg-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  fill: rgb(var(--ink));
+}
+.svg-mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  fill: rgb(var(--muted));
+}
+
+.glow {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+/* Visual revision mode: hide long-form prose */
+.mode-visual .prose-block {
+  display: none !important;
+}
+
+@media print {
+  body::before {
+    display: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+    font-size: 11pt;
+  }
+  .card {
+    box-shadow: none;
+    border-color: #ccc;
+    break-inside: avoid;
+  }
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
