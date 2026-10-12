@@ -1,7 +1,7 @@
 import { C } from './constants';
 
 /** Rydberg equation 1/λ = R (1/nf² − 1/ni²); returns λ in metres. Requires ni > nf ≥ 1. */
-export function rydbergWavelength(nf: number, ni: number, R = C.R) {
+export function rydbergWavelength(nf: number, ni: number, R: number = C.R) {
   if (!(Number.isInteger(nf) && Number.isInteger(ni) && nf >= 1 && ni > nf)) {
     throw new RangeError('Need integers with ni > nf ≥ 1');
   }
@@ -103,4 +103,4 @@ export const closestApproachFm = (keMeV: number, Z = 79) => (1.44 * 2 * Z) / keM
 /** Thomson e/m: v = E/B (velocity selector), r = mv/(qB) → q/m = E/(B² r) */
 export const thomsonChargeToMass = (E: number, B: number, r: number) => E / (B * B * r);
 /** Millikan: balanced drop q E = m g → q = m g d / V */
-export const millikanCharge = (m: number, V: number, d: number, g = C.g) => (m * g * d) / V;
+export const millikanCharge = (m: number, V: number, d: number, g: number = C.g) => (m * g * d) / V;

@@ -90,9 +90,9 @@ export function projectile({ u, angleDeg, h0, g }: ProjectileInput): ProjectileR
 }
 
 /** Special case: launch and landing at the same height. R = u^2 sin(2θ)/g */
-export const levelRange = (u: number, angleDeg: number, g = C.g) => (u * u * Math.sin(2 * rad(angleDeg))) / g;
-export const levelTimeOfFlight = (u: number, angleDeg: number, g = C.g) => (2 * u * Math.sin(rad(angleDeg))) / g;
-export const levelMaxHeight = (u: number, angleDeg: number, g = C.g) => (u * Math.sin(rad(angleDeg))) ** 2 / (2 * g);
+export const levelRange = (u: number, angleDeg: number, g: number = C.g) => (u * u * Math.sin(2 * rad(angleDeg))) / g;
+export const levelTimeOfFlight = (u: number, angleDeg: number, g: number = C.g) => (2 * u * Math.sin(rad(angleDeg))) / g;
+export const levelMaxHeight = (u: number, angleDeg: number, g: number = C.g) => (u * Math.sin(rad(angleDeg))) ** 2 / (2 * g);
 
 /**
  * Projectile with linear air drag (a = -k v), integrated numerically.
@@ -150,17 +150,17 @@ export function circular(m: number, v: number, r: number): CircularResult {
 }
 
 /** Banked track design speed (no friction needed): tanθ = v²/(rg) */
-export const bankedDesignSpeed = (r: number, bankDeg: number, g = C.g) => Math.sqrt(r * g * Math.tan(rad(bankDeg)));
-export const bankAngleFor = (v: number, r: number, g = C.g) => (Math.atan((v * v) / (r * g)) * 180) / Math.PI;
+export const bankedDesignSpeed = (r: number, bankDeg: number, g: number = C.g) => Math.sqrt(r * g * Math.tan(rad(bankDeg)));
+export const bankAngleFor = (v: number, r: number, g: number = C.g) => (Math.atan((v * v) / (r * g)) * 180) / Math.PI;
 /** Flat bend: maximum speed before sliding when friction alone supplies F_c */
-export const flatBendMaxSpeed = (mu: number, r: number, g = C.g) => Math.sqrt(mu * g * r);
+export const flatBendMaxSpeed = (mu: number, r: number, g: number = C.g) => Math.sqrt(mu * g * r);
 
 /**
  * Banked track with friction: required friction force (positive = down the slope)
  * for a car of mass m travelling at v. Resolving horizontally/vertically:
  * N sinθ + f cosθ = mv²/r, N cosθ − f sinθ = mg
  */
-export function bankedForces(m: number, v: number, r: number, bankDeg: number, g = C.g) {
+export function bankedForces(m: number, v: number, r: number, bankDeg: number, g: number = C.g) {
   const th = rad(bankDeg);
   const Fc = (m * v * v) / r;
   const N = m * g * Math.cos(th) + Fc * Math.sin(th);
@@ -169,7 +169,7 @@ export function bankedForces(m: number, v: number, r: number, bankDeg: number, g
 }
 
 /** Conical pendulum (mass on string in horizontal circle): string angle from vertical. */
-export function conicalPendulum(m: number, L: number, angleDeg: number, g = C.g) {
+export function conicalPendulum(m: number, L: number, angleDeg: number, g: number = C.g) {
   const th = rad(angleDeg);
   const r = L * Math.sin(th);
   const T = (m * g) / Math.cos(th); // tension
@@ -184,21 +184,21 @@ export const torque = (r: number, F: number, angleDeg: number) => r * F * Math.s
 /* ------------------------------------------------------------------ */
 /* Gravitation                                                         */
 /* ------------------------------------------------------------------ */
-export const gravForce = (M: number, m: number, r: number, G = C.G) => (G * M * m) / (r * r);
-export const fieldStrength = (M: number, r: number, G = C.G) => (G * M) / (r * r);
-export const orbitalSpeed = (M: number, r: number, G = C.G) => Math.sqrt((G * M) / r);
-export const orbitalPeriod = (M: number, r: number, G = C.G) => 2 * Math.PI * Math.sqrt((r * r * r) / (G * M));
-export const radiusFromPeriod = (M: number, T: number, G = C.G) => Math.cbrt((G * M * T * T) / (4 * Math.PI * Math.PI));
-export const escapeSpeed = (M: number, r: number, G = C.G) => Math.sqrt((2 * G * M) / r);
-export const gravPE = (M: number, m: number, r: number, G = C.G) => (-G * M * m) / r;
-export const orbitalKE = (M: number, m: number, r: number, G = C.G) => (G * M * m) / (2 * r);
-export const orbitalTotalE = (M: number, m: number, r: number, G = C.G) => (-G * M * m) / (2 * r);
+export const gravForce = (M: number, m: number, r: number, G: number = C.G) => (G * M * m) / (r * r);
+export const fieldStrength = (M: number, r: number, G: number = C.G) => (G * M) / (r * r);
+export const orbitalSpeed = (M: number, r: number, G: number = C.G) => Math.sqrt((G * M) / r);
+export const orbitalPeriod = (M: number, r: number, G: number = C.G) => 2 * Math.PI * Math.sqrt((r * r * r) / (G * M));
+export const radiusFromPeriod = (M: number, T: number, G: number = C.G) => Math.cbrt((G * M * T * T) / (4 * Math.PI * Math.PI));
+export const escapeSpeed = (M: number, r: number, G: number = C.G) => Math.sqrt((2 * G * M) / r);
+export const gravPE = (M: number, m: number, r: number, G: number = C.G) => (-G * M * m) / r;
+export const orbitalKE = (M: number, m: number, r: number, G: number = C.G) => (G * M * m) / (2 * r);
+export const orbitalTotalE = (M: number, m: number, r: number, G: number = C.G) => (-G * M * m) / (2 * r);
 /** Energy that must be supplied to move a satellite from circular orbit r1 to r2. */
-export const orbitTransferEnergy = (M: number, m: number, r1: number, r2: number, G = C.G) =>
+export const orbitTransferEnergy = (M: number, m: number, r1: number, r2: number, G: number = C.G) =>
   orbitalTotalE(M, m, r2, G) - orbitalTotalE(M, m, r1, G);
 
 /** Geostationary orbital radius for Earth using a sidereal day (86 164 s). */
-export const geostationaryRadius = (M = C.ME, G = C.G) => radiusFromPeriod(M, 86164, G);
+export const geostationaryRadius = (M: number = C.ME, G: number = C.G) => radiusFromPeriod(M, 86164, G);
 
 /* Two-body orbit integrator (central mass fixed), velocity-Verlet: symplectic, conserves energy well. */
 export interface OrbitState {
