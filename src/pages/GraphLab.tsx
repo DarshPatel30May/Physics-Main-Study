@@ -74,7 +74,7 @@ function GraphView({ id, onPick }: { id: string; onPick: (id: string) => void })
       <PageHeader kicker="Graph Lab" title={g.title} actions={<BookmarkButton bm={{ id: `graph:${g.id}`, kind: 'graph', title: g.title, href: `/graphs/${g.id}` }} />}>
         Change the parameters and watch the shape respond. Use the gradient and area tools to connect each graph to the physics.
       </PageHeader>
-      <div className="grid gap-4 lg:grid-cols-[260px_1fr]">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[260px_1fr]">
         <nav aria-label="Graphs" className="card h-fit p-2">
           <div className="lg:hidden">
             <Select label="Choose a graph" value={g.id} options={GRAPHS.map((x) => ({ value: x.id, label: `M${x.module} · ${x.title}` }))} onChange={onPick} />
@@ -105,6 +105,10 @@ function GraphView({ id, onPick }: { id: string; onPick: (id: string) => void })
                 reversedX
                 xDomain={[2500, 40000]}
                 yDomain={[1e-4, 1e6]}
+                xTicks={[30000, 20000, 10000, 6000, 4000, 3000]}
+                yTicks={[1e-4, 1e-2, 1, 1e2, 1e4, 1e6]}
+                xFormat={(v) => v.toLocaleString('en-AU')}
+                yFormat={(v) => (v >= 1 ? v.toLocaleString('en-AU') : String(v))}
                 height={380}
               />
             ) : (
@@ -129,7 +133,7 @@ function GraphView({ id, onPick }: { id: string; onPick: (id: string) => void })
             {built.readout && <p className="num mt-2 text-sm text-muted">{built.readout}</p>}
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <div className="card space-y-3 p-5">
               <div className="label">Parameters</div>
               {g.params.length ? (

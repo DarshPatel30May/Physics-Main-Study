@@ -61,7 +61,7 @@ export interface ShortAnswer {
 
 export type Question = MCQ | ShortAnswer;
 
-export const QUESTIONS: Question[] = [
+const RAW_QUESTIONS: Question[] = [
   /* ============================== MODULE 5 ============================== */
   {
     id: 'q5-01', kind: 'mcq', module: 5, section: 'm5-projectile', dotPoints: ['m5-pm-1'], difficulty: 1, skill: 'concept',
@@ -1195,6 +1195,27 @@ export const QUESTIONS: Question[] = [
     keyTerms: ['deep inelastic', 'scattering', 'quarks', 'de Broglie', 'electric field', 'magnetic field', 'detector', 'hadrons'],
   },
 ];
+
+/** Deterministic option order per question (FNV-1a hash of the id seeds a Fisher–Yates shuffle). */
+function seededShuffle<T>(arr: T[], key: string): T[] {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < key.length; i++) h = Math.imul(h ^ key.charCodeAt(i), 0x01000193) >>> 0;
+  const rand = () => {
+    h = (h + 0x6d2b79f5) >>> 0;
+    let t = h;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+export const QUESTIONS: Question[] = RAW_QUESTIONS.map((q) => (q.kind === 'mcq' ? { ...q, options: seededShuffle(q.options, q.id) } : q));
 
 export const mcqs = () => QUESTIONS.filter((q): q is MCQ => q.kind === 'mcq');
 export const shortAnswers = () => QUESTIONS.filter((q): q is ShortAnswer => q.kind === 'sa');

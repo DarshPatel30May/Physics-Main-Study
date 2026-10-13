@@ -212,7 +212,7 @@ export default function ModulePage() {
         <PartTitle id="formulas" letter="D" title="Formulas">
           Every relationship used in this module. Open a calculator to solve for any variable, or the full formula page for worked examples and practice.
         </PartTitle>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {formulas.map((f) => (
             <div key={f.id} className="card p-4">
               <div className="flex items-start justify-between gap-2">
@@ -266,7 +266,7 @@ export default function ModulePage() {
         <PartTitle id="experiments" letter="F" title="Experiments and evidence">
           Practical investigations you are expected to understand, and the historical experiments that shaped the theory.
         </PartTitle>
-        <div className="grid gap-3 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {content.experiments.map((e) => (
             <div key={e.title} className="card p-5">
               <div className="flex flex-wrap items-center gap-2">
@@ -310,7 +310,7 @@ export default function ModulePage() {
         <PartTitle id="hsc" letter="G" title="HSC application">
           How this module is typically examined, and the mistakes that cost marks.
         </PartTitle>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {(
             [
               ['Common question types', content.hsc.questionTypes],
@@ -346,7 +346,7 @@ export default function ModulePage() {
       {/* -------- H. Quick revision -------- */}
       <section>
         <PartTitle id="revision" letter="H" title="Quick revision" />
-        <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1fr]">
           <div className="space-y-4">
             <Callout kind="tip" title="30-second summary">
               {content.quick.summary30}

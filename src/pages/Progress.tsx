@@ -56,7 +56,7 @@ export default function Progress() {
         Tracked by module, subtopic and error type from your practice questions, solver problems and mock exams. Data stays in this browser.
       </PageHeader>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
         {MODULES.map((m) => {
           const p = moduleProgress(progress, m.no);
           const c = conceptsDone.find((x) => x.m.no === m.no)!;
@@ -100,7 +100,7 @@ export default function Progress() {
         </EmptyState>
       ) : (
         <>
-          <div className="grid gap-4 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <div className="card space-y-3 p-5">
               <h2 className="text-lg font-semibold">By subtopic</h2>
               {sectionStats

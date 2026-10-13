@@ -51,7 +51,7 @@ export function ConceptLesson({ c, moduleId }: { c: Concept; moduleId: string })
         </div>
       </header>
 
-      <div className={`grid gap-5 ${c.diagram ? 'lg:grid-cols-[1.25fr_1fr]' : ''}`}>
+      <div className={`grid grid-cols-1 gap-5 ${c.diagram ? 'lg:grid-cols-[1.25fr_1fr]' : ''}`}>
         <div className="space-y-3 text-[15px]">
           {mode === 'beginner' && (
             <>

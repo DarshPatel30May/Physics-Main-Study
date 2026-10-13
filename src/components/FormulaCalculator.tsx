@@ -32,7 +32,7 @@ export function FormulaCalculator({ f, compact = false }: { f: Formula; compact?
   const r = f.solve[unknown];
 
   return (
-    <div className={`grid gap-4 ${compact ? '' : 'lg:grid-cols-[1fr_1fr]'}`}>
+    <div className={`grid grid-cols-1 gap-4 ${compact ? '' : 'lg:grid-cols-[1fr_1fr]'}`}>
       <div className="space-y-3">
         <div>
           <div className="label mb-1.5">Solve for</div>

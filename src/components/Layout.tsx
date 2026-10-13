@@ -169,7 +169,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </a>
       {/* Top bar */}
       <header className="no-print sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur">
-        <div className="flex h-14 items-center gap-3 px-3 sm:px-5">
+        <div className="flex h-14 items-center gap-2 px-3 sm:gap-3 sm:px-5">
           <button className="btn !px-2 lg:hidden" onClick={() => setMenu(true)} aria-label="Open menu">
             <Menu className="h-5 w-5" />
           </button>
@@ -181,7 +181,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               HSC Physics <span className="text-accent">2026</span>
             </span>
           </Link>
-          <button onClick={() => setSearchOpen(true)} className="ml-2 flex flex-1 items-center gap-2 rounded-lg border border-line bg-panel px-3 py-1.5 text-left text-sm text-muted hover:border-accent/50 sm:max-w-md" aria-label="Search (Ctrl+K)">
+          <button onClick={() => setSearchOpen(true)} className="flex min-w-0 flex-1 items-center gap-2 rounded-lg sm:ml-2 border border-line bg-panel px-3 py-1.5 text-left text-sm text-muted hover:border-accent/50 sm:max-w-md" aria-label="Search (Ctrl+K)">
             <Search className="h-4 w-4" aria-hidden />
             <span className="flex-1 truncate">Search…</span>
             <kbd className="hidden rounded border border-line px-1.5 text-[10px] sm:inline">Ctrl K</kbd>
@@ -207,7 +207,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               </option>
             ))}
           </select>
-          <button className="btn !px-2" onClick={() => window.print()} title="Print / save as PDF" aria-label="Print or save as PDF">
+          <button className="btn !hidden !px-2 sm:!inline-flex" onClick={() => window.print()} title="Print / save as PDF" aria-label="Print or save as PDF">
             <Printer className="h-4 w-4" />
           </button>
           <button className="btn !px-2" onClick={() => setPrefs({ theme: prefs.theme === 'dark' ? 'light' : 'dark' })} aria-label={`Switch to ${prefs.theme === 'dark' ? 'light' : 'dark'} theme`}>

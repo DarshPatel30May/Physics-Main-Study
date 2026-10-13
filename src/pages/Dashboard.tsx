@@ -75,7 +75,7 @@ export default function Dashboard() {
         <h2 id="modules-h" className="mb-4 text-2xl font-semibold">
           Modules
         </h2>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {MODULES.map((m) => {
             const p = moduleProgress(progress, m.no);
             const c = MODULE_CONTENT[m.no];
@@ -111,7 +111,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      <section aria-labelledby="mode-h" className="grid gap-4 lg:grid-cols-[2fr_1fr]">
+      <section aria-labelledby="mode-h" className="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
         <div className="card p-5">
           <h2 id="mode-h" className="text-lg font-semibold">
             Learning mode

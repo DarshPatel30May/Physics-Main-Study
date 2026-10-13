@@ -50,7 +50,7 @@ function FormulaView({ f }: { f: Formula }) {
         <BookmarkButton bm={{ id: `formula:${f.id}`, kind: 'formula', title: f.name, href: `/formulas/${f.id}` }} />
       </header>
 
-      <div className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.2fr_1fr]">
         <div className="card p-6">
           <Tex block className="text-2xl sm:text-3xl">
             {f.tex}
@@ -82,7 +82,7 @@ function FormulaView({ f }: { f: Formula }) {
         <FormulaCalculator f={f} />
       </section>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <section className="card p-5">
           <h2 className="mb-2 text-lg font-semibold">Conditions of use</h2>
           <ul className="list-disc space-y-1 pl-5 text-sm">
@@ -151,7 +151,7 @@ function FormulaView({ f }: { f: Formula }) {
       </section>
 
       {(dps.length > 0 || related.length > 0) && (
-        <section className="grid gap-4 lg:grid-cols-2">
+        <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {dps.length > 0 && (
             <div className="card p-5">
               <div className="label mb-2">Syllabus dot points</div>

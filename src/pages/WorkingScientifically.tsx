@@ -57,7 +57,7 @@ function Skills() {
     <div className="space-y-6">
       <div className="card p-5">
         <div className="label mb-2">Year 12 Working Scientifically outcomes</div>
-        <ul className="grid gap-2 md:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {WS_OUTCOMES.map((o) => (
             <li key={o.code} className="rounded-xl border border-line p-3 text-sm">
               <span className="num font-semibold text-accent">{o.code}</span> · <span className="font-semibold">{o.skill}</span>
@@ -67,7 +67,7 @@ function Skills() {
         </ul>
         <p className="mt-2 text-[11px] text-muted">Outcomes: NSW Physics Stage 6 Syllabus (2017) © NESA.</p>
       </div>
-      <div className="grid gap-3 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {SKILLS.map((s) => (
           <div key={s.title} className="card p-5">
             <h3 className="font-semibold">{s.title}</h3>
@@ -139,7 +139,7 @@ function Builder({ initial, onPick }: { initial: string; onPick: (id: string) =>
         <ModuleBadge m={inv.module} />
         {inv.dotPoints.map((dp) => <Chip key={dp}>{dp}</Chip>)}
       </div>
-      <div className="grid gap-3 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {parts.map(([t, body]) => (
           <div key={t} className="card p-4">
             <div className="label mb-1">{t}</div>
@@ -189,7 +189,7 @@ function Builder({ initial, onPick }: { initial: string; onPick: (id: string) =>
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="card p-4">
           <div className="label mb-2">9. Raw data</div>
           <Graph data={[]} xKey="x" series={[]} scatter={[{ name: 'data', data: d.points.map((p) => ({ x: p[0], y: p[1] })) }]} xLabel={`${inv.table.x} (${inv.table.xUnit})`} yLabel={`${inv.table.y} (${inv.table.yUnit})`} height={260} />
@@ -208,7 +208,7 @@ function Builder({ initial, onPick }: { initial: string; onPick: (id: string) =>
         </div>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         <div className="card p-4">
           <div className="label mb-1">10. Analysis</div>
           <p className="text-sm">{inv.analysis}</p>
@@ -314,7 +314,7 @@ function Analysis() {
   };
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
       <div className="card space-y-3 p-5">
         <div className="grid gap-2 sm:grid-cols-2">
           <label className="text-sm">

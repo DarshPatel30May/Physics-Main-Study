@@ -11,7 +11,7 @@ export default function About() {
   return (
     <div className="space-y-6">
       <PageHeader kicker="Reference" title="Data sheet, sources and notes" />
-      <div className="grid gap-4 lg:grid-cols-[1.3fr_1fr]">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.3fr_1fr]">
         <section className="card overflow-x-auto p-5">
           <h2 className="mb-3 text-lg font-semibold">Data sheet values used in calculations</h2>
           <table className="w-full text-sm">
@@ -57,7 +57,7 @@ export default function About() {
       </div>
       <section className="card p-5">
         <h2 className="mb-3 text-lg font-semibold">Sources</h2>
-        <ul className="grid gap-2 md:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {REFERENCES.map((r) => (
             <li key={r.url} className="rounded-xl border border-line p-3 text-sm">
               <a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold text-accent hover:underline">

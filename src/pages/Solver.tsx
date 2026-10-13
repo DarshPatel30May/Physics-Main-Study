@@ -23,7 +23,7 @@ export default function Solver() {
       <PageHeader kicker="Problem Solver" title="Step-by-step physics tutor">
         Work through a problem in eight steps: understand it, list knowns, draw a diagram, pick and rearrange the formula, convert units, calculate and interpret. Wrong answers are diagnosed (formula, units, sign or calculation). No AI — every problem type is built from validated physics.
       </PageHeader>
-      <div className="grid gap-4 lg:grid-cols-[260px_1fr]">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[260px_1fr]">
         <nav aria-label="Problem types" className="card h-fit p-2">
           <div className="lg:hidden">
             <Select label="Problem type" value={tpl?.id ?? ''} options={[{ value: '', label: 'Choose…' }, ...TEMPLATES.map((t) => ({ value: t.id, label: `M${t.module} · ${t.title}` })), { value: 'custom', label: 'Any formula (custom)' }]} onChange={(v) => nav(v ? `/solver/${v}` : '/solver')} />

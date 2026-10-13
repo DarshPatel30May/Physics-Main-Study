@@ -26,6 +26,7 @@ export interface GraphProps {
   dots?: { x: number; y: number; colour?: string; label?: string }[];
   legend?: boolean;
   xTicks?: number[];
+  yTicks?: number[];
   reversedX?: boolean;
   xFormat?: (v: number) => string;
   yFormat?: (v: number) => string;
@@ -38,7 +39,7 @@ const fmt = (v: number) => (typeof v === 'number' ? sig(v, 3) : String(v));
 /** Line chart with physically labelled axes; animations disabled so live sims stay in sync. */
 export function Graph({
   data, xKey, series, xLabel, yLabel, height = 220, xDomain = ['auto', 'auto'], yDomain = ['auto', 'auto'], xScale = 'linear', yScale = 'linear',
-  refX = [], refY = [], dots = [], legend, xTicks, reversedX, xFormat = fmt, yFormat = fmt, scatter,
+  refX = [], refY = [], dots = [], legend, xTicks, yTicks, reversedX, xFormat = fmt, yFormat = fmt, scatter,
 }: GraphProps) {
   const c = useThemeColours();
   const palette = [c.accent, c.m7, c.m6, c.m8, c.m5, c.bad];
@@ -52,7 +53,8 @@ export function Graph({
             dataKey={xKey}
             type="number"
             domain={xDomain}
-            scale={xScale}
+            scale={xScale === 'log' ? 'log' : 'auto'}
+            tickCount={xTicks ? undefined : 7}
             allowDataOverflow
             reversed={reversedX}
             ticks={xTicks}
@@ -64,7 +66,9 @@ export function Graph({
           <YAxis
             type="number"
             domain={yDomain}
-            scale={yScale}
+            scale={yScale === 'log' ? 'log' : 'auto'}
+            tickCount={yTicks ? undefined : 6}
+            ticks={yTicks}
             allowDataOverflow
             tickFormatter={yFormat}
             stroke={c.muted}

@@ -40,7 +40,7 @@ export default function ExamCentre() {
 function Overview() {
   const papers = REFERENCES.filter((r) => r.org === 'NESA');
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <div className="card p-5">
         <h2 className="text-lg font-semibold">2026 HSC Physics examination</h2>
         <dl className="mt-3 grid grid-cols-3 gap-2 text-center">
@@ -137,7 +137,7 @@ function Practice() {
   }, [pool]);
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[260px_1fr]">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-[260px_1fr]">
       <aside className="card h-fit space-y-3 p-4">
         <Select label="Module" value={mod} options={[{ value: 'all', label: 'All modules' }, { value: '5', label: 'Module 5' }, { value: '6', label: 'Module 6' }, { value: '7', label: 'Module 7' }, { value: '8', label: 'Module 8' }]} onChange={setMod} />
         <Select label="Question type" value={kind} options={[{ value: 'all', label: 'Both sections' }, { value: 'mcq', label: 'Section I — multiple choice' }, { value: 'sa', label: 'Section II — short answer' }]} onChange={(v) => setKind(v)} />
